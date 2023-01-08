@@ -1,4 +1,6 @@
-﻿namespace RestaurantApp
+﻿using System.Text.Json;
+
+namespace RestaurantApp
 {
     internal class Program
     {
@@ -6,9 +8,7 @@
         {
             var start = new MainApp();
 
-            start.StartApp();
-
-
+            //start.StartApp();
 
         }
     }
