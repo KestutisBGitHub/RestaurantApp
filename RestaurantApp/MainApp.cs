@@ -53,12 +53,14 @@ namespace RestaurantApp
             Console.WriteLine(input);
             if (input == "1")
             {
-                //print free table list
+                
+                Tables.PrintTableList(input);
                 LayerFreeTables();
             }
             else if (input == "2")
             {
-                //print busy table list
+                
+                Tables.PrintTableList(input);
                 LayerBusyTables();
             }
             else if (input == "9" || input == "0")
@@ -78,21 +80,22 @@ namespace RestaurantApp
         public void LayerFreeTables()
         {
             
-            Console.WriteLine("[1] - Take table");
+            Console.WriteLine("[1] - Take table, enter table number");
             Console.WriteLine("[9] - Back");
             Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
-            if (input == "1")
+            var input = Console.ReadLine().Split(" ");
+            Console.WriteLine(input[0]);
+            if (input[0] == "1")
             {
                 //change table status
+                Tables.TableStatusChange(input[1]);
                 LayerBusyTables();
             }
-            else if (input == "9")
+            else if (input[0] == "9")
             {
                 LayerTableList();
             }
-            else if (input == "0")
+            else if (input[0] == "0")
             {
                 LayerTop();
             }
@@ -105,29 +108,31 @@ namespace RestaurantApp
 
         public void LayerBusyTables()
         {
-            Console.WriteLine("[1] - Release table");
+            Console.WriteLine("[1] - Release table, enter table number");
             Console.WriteLine("[2] - Review order");
             Console.WriteLine("[9] - Back");
             Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
+            var input = Console.ReadLine().Split(" ");
             Console.WriteLine(input);
-            if (input == "1")
+            if (input[0] == "1")
             {
                 //check is bill paid
-                //change table status
-                //delete table order list
                 
+                //delete table order list
+                Tables.TableStatusChange(input[1]);
+                LayerTableList();
+
             }
-            else if (input == "2")
+            else if (input[0] == "2")
             {
                 //print order list
                 LayerReviewOrder();
             }
-            else if (input == "9")
+            else if (input[0] == "9")
             {
                 LayerTableList();
             }
-            else if (input == "0")
+            else if (input[0] == "0")
             {
                 LayerTop();
             }
