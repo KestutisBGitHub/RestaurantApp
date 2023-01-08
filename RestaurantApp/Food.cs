@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace RestaurantApp
@@ -21,6 +22,15 @@ namespace RestaurantApp
             Price = price;
         }
 
+        public static void PrintFoodList()
+        {
+            string fileContent = File.ReadAllText("Food.txt");
+            var foodList = JsonSerializer.Deserialize<List<Food>>(fileContent);
+            foreach(var item in foodList)
+            {
+                Console.WriteLine($"No: {item.ItemNo}, Name: {item.Name}, Price: {item.Price}");
+            }
+        }
 
     }
 

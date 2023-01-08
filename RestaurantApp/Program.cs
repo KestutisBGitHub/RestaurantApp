@@ -12,15 +12,24 @@ namespace RestaurantApp
 
             start.StartApp();
 
-            
-
-     
 
 
-            //foreach (var table in cardsList)
+            //var tableList = new List<Order>()
             //{
-            //   Console.WriteLine($"Table No: {table.TableNo}, Size: {table.Size},Status: {table.Status}");
+            //    new Order( "1", 2, DateTime.Now, 100, "Sultys" ),
+            //    new Order( "2", 2, DateTime.Now, 100, "Sultys" ),
+            //    new Order( "3", 2, DateTime.Now, 100, "Sultys" ),
+                
+            //};
+            //tableList.Add("alus");
+            ////foreach(var item in tableList)
+            //{
+            //    Console.WriteLine($"{item.TableNo} {item.TableSize} {item.DateAndTime} {item.TotalToPay} {item.Name}");
             //}
+
+            //var jsonString = JsonSerializer.Serialize(tableList);
+           // File.WriteAllText("activeOrders.txt", jsonString);
+
 
         }
     }

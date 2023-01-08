@@ -87,7 +87,7 @@ namespace RestaurantApp
             Console.WriteLine(input[0]);
             if (input[0] == "1")
             {
-                //change table status
+                
                 Tables.TableStatusChange(input[1]);
                 LayerBusyTables();
             }
@@ -116,9 +116,9 @@ namespace RestaurantApp
             Console.WriteLine(input);
             if (input[0] == "1")
             {
-                //check is bill paid
                 
-                //delete table order list
+                
+                
                 Tables.TableStatusChange(input[1]);
                 LayerTableList();
 
@@ -185,12 +185,12 @@ namespace RestaurantApp
             Console.WriteLine(input);
             if (input == "1")
             {
-                //print food list
+                Food.PrintFoodList();
                 LayerAddRemove();
             }
             else if (input == "2")
             {
-                //print Drink list
+                Drinks.PrintDrinkList();
                 LayerAddRemove();
             }
             else if (input == "9")
@@ -248,7 +248,8 @@ namespace RestaurantApp
             Console.WriteLine(input);
             if (input == "1")
             {
-                //change paid status
+                
+
             }
             else if (input == "9")
             {
@@ -274,10 +275,12 @@ namespace RestaurantApp
             if (input == "1")
             {
                 //print check
+                //delete table order list
             }
             else if (input == "2")
             {
                 //dont print
+                //delete table order list
             }
             else
             {

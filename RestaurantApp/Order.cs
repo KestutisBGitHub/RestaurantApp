@@ -10,10 +10,23 @@ namespace RestaurantApp
     {
 
         public string TableNo { get; set; }
-        public string ItemNo { get; set; }
+        public int TableSize { get; set; }
+        public DateTime DateAndTime { get; set; }
+        public decimal TotalToPay { get; set; }
         public string Name { get; set; }
-        public int Amount { get; set; }
-        public decimal Price { get; set; }
+        
 
+
+        
+
+        public Order(string tableNo, int tableSize, DateTime dateAndTime, decimal totalToPay, string name  )
+        {
+            TableNo = tableNo;
+            TableSize = tableSize;
+            DateAndTime = dateAndTime;
+            TotalToPay = totalToPay;
+            { Name = name; }
+
+        }
     }
 }
