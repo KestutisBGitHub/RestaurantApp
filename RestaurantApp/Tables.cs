@@ -26,13 +26,16 @@ namespace RestaurantApp
         {
             string fileContent = File.ReadAllText("Tables.txt");
             var tableList = JsonSerializer.Deserialize<List<Tables>>(fileContent);
-            
+                
+                
+                
 
                 if (input == "1")
                 { 
                   var trueList = tableList.Where(x => x.Status == true);
                   foreach (var table in trueList)
                 {
+
                     Console.WriteLine($"Table No: {table.TableNo}, Size: {table.Size}, Status: {table.Status}");
                 }                                       
                 } else if (input == "2")

@@ -8,9 +8,12 @@ namespace RestaurantApp
 {
     public class MainApp
     {
-        public void StartApp()
+        private string _tableNumberForApp;
+        private IConsole _console;
+        public void StartApp(IConsole console)
         {
-            Console.WriteLine("Hello pick your options");
+            _console = console;
+            _console.WriteLine("Hello pick your options");
             LayerTop();
 
            
@@ -18,11 +21,11 @@ namespace RestaurantApp
         }
         public void LayerTop()
         {
-            Console.WriteLine("[1] - Table List");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[x] - End");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Table List");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[x] - End");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 LayerTableList();
@@ -32,12 +35,12 @@ namespace RestaurantApp
             }
             else if (input == "x")
             {
-                Console.WriteLine("Good bye!!!");
+                _console.WriteLine("Good bye!!!");
                 return;
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerTop();
             }
                        
@@ -45,12 +48,12 @@ namespace RestaurantApp
 
             public void LayerTableList()
             {
-                Console.WriteLine("[1] - Free tables");
-                Console.WriteLine("[2] - Busy tables");
-                Console.WriteLine("[9] - Back");
-                Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Free tables");
+            _console.WriteLine("[2] - Busy tables");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 
@@ -68,7 +71,7 @@ namespace RestaurantApp
                 LayerTop();
             } else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerTableList();
             }
         }
@@ -79,15 +82,15 @@ namespace RestaurantApp
 
         public void LayerFreeTables()
         {
-            
-            Console.WriteLine("[1] - Take table, enter table number");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
+
+            _console.WriteLine("[1] - Take table, enter table number");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
             var input = Console.ReadLine().Split(" ");
-            Console.WriteLine(input[0]);
+            _console.WriteLine(input[0]);
             if (input[0] == "1")
             {
-                
+                _tableNumberForApp=input[1];
                 Tables.TableStatusChange(input[1]);
                 LayerBusyTables();
             }
@@ -101,31 +104,33 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerFreeTables();
             }
         }
 
         public void LayerBusyTables()
         {
-            Console.WriteLine("[1] - Release table, enter table number");
-            Console.WriteLine("[2] - Review order");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine().Split(" ");
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Release table, enter table number");
+            _console.WriteLine("[2] - Review order");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine().Split(" ");
+            
             if (input[0] == "1")
             {
-                
-                
-                
+
+                _tableNumberForApp = input[1];
+
                 Tables.TableStatusChange(input[1]);
                 LayerTableList();
 
             }
             else if (input[0] == "2")
             {
-                //print order list
+                _tableNumberForApp = input[1];
+                Order.OrderView(_tableNumberForApp);
+                
                 LayerReviewOrder();
             }
             else if (input[0] == "9")
@@ -138,19 +143,19 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
 
         public void LayerReviewOrder()
         {
-            Console.WriteLine("[1] - Add order");
-            Console.WriteLine("[2] - Checkout");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Add order");
+            _console.WriteLine("[2] - Checkout");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
 
@@ -171,18 +176,18 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
         public void LayerFoodDrinks()
         {
-            Console.WriteLine("[1] - Food");
-            Console.WriteLine("[2] - Drinks");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Food");
+            _console.WriteLine("[2] - Drinks");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 Food.PrintFoodList();
@@ -204,48 +209,48 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerFoodDrinks();
             }
         }
         public void LayerAddRemove()
         {
-            Console.WriteLine("[1] - Add");
-            Console.WriteLine("[2] - Remove");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
-            if (input == "1")
+            _console.WriteLine("[1] - Add and enter dish number");
+            _console.WriteLine("[2] - Remove and enter dish number");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine().Split(" ");
+            _console.WriteLine($"{input[1]} {input[0]}");
+            if (input[0] == "1")
             {
                 //add to table order
             }
-            else if (input == "2")
+            else if (input[0] == "2")
             {
                 //remove from table order
             }
-            else if (input == "9")
+            else if (input[0] == "9")
             {
                 LayerFoodDrinks();
             }
-            else if (input == "0")
+            else if (input[0] == "0")
             {
                 LayerTop();
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
 
         public void LayerCheckout()
         {
-            Console.WriteLine("[1] - Paid");
-            Console.WriteLine("[9] - Back");
-            Console.WriteLine("[0] - Back to top");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Paid");
+            _console.WriteLine("[9] - Back");
+            _console.WriteLine("[0] - Back to top");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 
@@ -261,17 +266,17 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
 
         public void LayerCheck()
         {
-            Console.WriteLine("[1] - Print check");
-            Console.WriteLine("[2] - Don't Print check");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Print check");
+            _console.WriteLine("[2] - Don't Print check");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 //print check
@@ -284,17 +289,17 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
 
         public void LayerEmail()
         {
-            Console.WriteLine("[1] - Email check");
-            Console.WriteLine("[2] - Don't email check");
-            var input = Console.ReadLine();
-            Console.WriteLine(input);
+            _console.WriteLine("[1] - Email check");
+            _console.WriteLine("[2] - Don't email check");
+            var input = _console.ReadLine();
+            _console.WriteLine(input);
             if (input == "1")
             {
                 LayerEmailTo();
@@ -305,16 +310,16 @@ namespace RestaurantApp
             }
             else
             {
-                Console.WriteLine("no such option, repeat");
+                _console.WriteLine("no such option, repeat");
                 LayerBusyTables();
             }
         }
 
         public void LayerEmailTo()
         {
-            Console.WriteLine("Enter email");
-            var layerEmailTo = Console.ReadLine();
-            Console.WriteLine($"Check sent to email address:{layerEmailTo}");
+            _console.WriteLine("Enter email");
+            var layerEmailTo = _console.ReadLine();
+            _console.WriteLine($"Check sent to email address:{layerEmailTo}");
         }
 
 

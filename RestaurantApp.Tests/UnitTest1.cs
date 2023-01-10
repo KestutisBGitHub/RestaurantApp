@@ -1,24 +1,40 @@
+using RestaurantApp;
+
 namespace RestaurantApp.Tests
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void PrintFoodList()
         {
+            var testConsole = new TestConsole();
+            var start = new MainApp();
+            start.StartApp(testConsole);
+
+
         }
 
-        // Data
 
-        var tableList = new List<Tables>()
-            {
-                new Tables("1", 2, true),
-                new Tables("2", 2, true),
-                new Tables("3", 4, true),
-                new Tables("4", 4, true),
-                new Tables("5", 8, true),
-                new Tables("6", 12, true),
-            };
 
+
+
+    }
+
+}
+
+public class TestConsole : IConsole
+
+{
+    public string Output { get; set; }
+    public string Input { get; set; }
+    public string ReadLine()
+    {
+        return Input;
+    }
+
+    public void WriteLine(string value)
+    {
+        Output += value;
     }
 }
